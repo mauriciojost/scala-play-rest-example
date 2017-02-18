@@ -28,12 +28,16 @@ trait UserController extends Controller {
         }
     }
                                            
-    def createUser = Action(parse.json) {request =>
+    def createUser = Action(parse.urlFormEncoded) {request =>
+        println(request.body)
+        Created
+        /*
         unmarshalJsValue(request) { resource: UserResource =>
             val user = User(Option.empty, resource.email)
             userService.createUser(user)
             Created
         }
+        */
     }
     
     def updateUser(id: Long) = Action(parse.json) {request =>
