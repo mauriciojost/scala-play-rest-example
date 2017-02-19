@@ -1,16 +1,12 @@
 package controllers.user
 
-import play.api._
 import play.api.mvc._
-import play.api.libs.json._
-import play.api.libs.json.Reads._
-import play.api.libs.functional.syntax._
 import services.user.UserServiceComponent
-import domain.user.User
 
 trait UserController extends Controller {
     self: UserServiceComponent =>0
 
+    /*
     def emailAlreadyExists(implicit reads: Reads[String]) =
         Reads[String](js => reads.reads(js).flatMap { e =>
           userService.tryFindByEmail(e).map(_ => JsError("error.custom.emailAlreadyExists")).getOrElse(JsSuccess(e))
@@ -18,7 +14,9 @@ trait UserController extends Controller {
 
     implicit val userReads = (__ \ "email").read[String](email andKeep emailAlreadyExists)
                                            .map(resource => UserResource(resource))
-    
+    */
+
+    /*
     implicit val userWrites = new Writes[User] {
         override def writes(user: User): JsValue = {
             Json.obj(
@@ -27,6 +25,7 @@ trait UserController extends Controller {
             )
         }
     }
+    */
                                            
     def createUser = Action(parse.urlFormEncoded) {request =>
         println(request.body)
@@ -39,7 +38,8 @@ trait UserController extends Controller {
         }
         */
     }
-    
+
+    /*
     def updateUser(id: Long) = Action(parse.json) {request =>
         unmarshalJsValue(request) { resource: UserResource =>
             val user = User(Option(id), resource.email)
@@ -71,6 +71,7 @@ trait UserController extends Controller {
                 BadRequest(error)
             }
         )
+       */
 
 }
 

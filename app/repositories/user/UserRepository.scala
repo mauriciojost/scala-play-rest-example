@@ -10,7 +10,8 @@ trait UserRepositoryComponent {
     trait UserRepository {
         
         def createUser(user: User): User
-        
+
+        /*
         def updateUser(user: User)
         
         def tryFindById(id: Long): Option[User]
@@ -18,6 +19,7 @@ trait UserRepositoryComponent {
         def tryFindByEmail(email: String): Option[User]
         
         def delete(id: Long)
+        */
         
     }
 }
@@ -36,7 +38,8 @@ trait UserRepositoryComponentImpl extends UserRepositoryComponent {
             users.put(newId, createdUser)
             createdUser
         }
-        
+
+        /*
         override def updateUser(user: User) {
             users.put(user.id.get, user)
         }
@@ -53,6 +56,7 @@ trait UserRepositoryComponentImpl extends UserRepositoryComponent {
         override def delete(id: Long) {
             users.remove(id)
         }
+        */
         
     }
     
