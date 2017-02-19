@@ -1,15 +1,15 @@
-package repositories.user
+package repositories.dev
 
-import domain.user.User
+import domain.dev.DevStat
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
-trait UserRepositoryComponent {
-    val userRepository: UserRepository
+trait DevStatRepositoryComponent {
+    val devStatRepository: UserRepository
     
     trait UserRepository {
         
-        def createUser(user: User): User
+        def updateDevStat(user: DevStat): DevStat
 
         /*
         def updateUser(user: User)
@@ -24,15 +24,15 @@ trait UserRepositoryComponent {
     }
 }
 
-trait UserRepositoryComponentImpl extends UserRepositoryComponent {
-    override val userRepository = new UserRepositoryImpl
+trait DevStatRepositoryComponentImpl extends DevStatRepositoryComponent {
+    override val devStatRepository = new UserRepositoryImpl
     
     class UserRepositoryImpl extends UserRepository {
         
-        val users = new ConcurrentHashMap[Long, User]
+        val users = new ConcurrentHashMap[Long, DevStat]
         val idSequence = new AtomicLong(0)
         
-        override def createUser(user: User): User = {
+        override def updateDevStat(user: DevStat): DevStat = {
             val newId = idSequence.incrementAndGet()
             val createdUser = user.copy(id = Option(newId))
             users.put(newId, createdUser)

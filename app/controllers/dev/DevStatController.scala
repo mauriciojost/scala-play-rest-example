@@ -1,10 +1,10 @@
-package controllers.user
+package controllers.dev
 
 import play.api.mvc._
-import services.user.UserServiceComponent
+import services.dev.DevStatServiceComponent
 
-trait UserController extends Controller {
-    self: UserServiceComponent =>0
+trait DevStatController extends Controller {
+    self: DevStatServiceComponent =>0
 
     /*
     def emailAlreadyExists(implicit reads: Reads[String]) =
@@ -26,7 +26,8 @@ trait UserController extends Controller {
         }
     }
     */
-                                           
+
+    /*
     def createUser = Action(parse.urlFormEncoded) {request =>
         println(request.body)
         Created
@@ -38,16 +39,21 @@ trait UserController extends Controller {
         }
         */
     }
+    */
 
-    /*
-    def updateUser(id: Long) = Action(parse.json) {request =>
+    def updateDevStat(id: Long) = Action(parse.urlFormEncoded) {request =>
+        println(request.body)
+        /*
         unmarshalJsValue(request) { resource: UserResource =>
             val user = User(Option(id), resource.email)
             userService.updateUser(user)
             NoContent
         }
+        */
+        NoContent
     }
-    
+
+    /*
     def findUserById(id: Long) = Action {
         val user = userService.tryFindById(id)
         if (user.isDefined) {
@@ -75,4 +81,4 @@ trait UserController extends Controller {
 
 }
 
-case class UserResource(email: String)
+case class DevStatResource(email: String)

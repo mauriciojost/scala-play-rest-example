@@ -1,39 +1,39 @@
-package services.user
+package services.dev
 
-import domain.user.User
-import repositories.user.UserRepositoryComponent
+import domain.dev.DevStat
+import repositories.dev.DevStatRepositoryComponent
 
-trait UserServiceComponent {
-    
-    val userService: UserService
-    
-    trait UserService {
-        
-        def createUser(user: User): User
+trait DevStatServiceComponent {
+
+    val devStatService: DevStatService
+
+    trait DevStatService {
+
+        def updateDevStat(d: DevStat): DevStat
 
         /*
         def updateUser(user: User)
-        
+
         def tryFindById(id: Long): Option[User]
 
         def tryFindByEmail(email: String): Option[User]
-        
+
         def delete(id: Long)
         */
-    
+
     }
 
 }
 
-trait UserServiceComponentImpl extends UserServiceComponent {
-    self: UserRepositoryComponent =>
-    
-    override val userService = new UserServiceImpl
-    
-    class UserServiceImpl extends UserService {
-        
-        override def createUser(user: User): User = {
-            userRepository.createUser(user)
+trait DevStatServiceComponentImpl extends DevStatServiceComponent {
+    self: DevStatRepositoryComponent =>
+
+    override val devStatService = new DevStatServiceImpl
+
+    class DevStatServiceImpl extends DevStatService {
+
+        override def updateDevStat(d: DevStat): DevStat = {
+            devStatRepository.updateDevStat(d)
         }
 
         /*

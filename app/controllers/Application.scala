@@ -1,14 +1,14 @@
 package controllers
 
+import controllers.dev.DevStatController
 import play.api._
 import play.api.mvc._
-import controllers.user.UserController
-import services.user.UserServiceComponentImpl
-import repositories.user.UserRepositoryComponentImpl
+import repositories.dev.DevStatRepositoryComponentImpl
+import services.dev.DevStatServiceComponentImpl
 
-object Application extends UserController
-                   with UserServiceComponentImpl
-                   with UserRepositoryComponentImpl {
+object Application extends DevStatController
+                   with DevStatServiceComponentImpl
+                   with DevStatRepositoryComponentImpl {
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))
