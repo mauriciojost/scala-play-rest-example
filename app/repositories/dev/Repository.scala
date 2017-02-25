@@ -1,32 +1,34 @@
 package repositories.dev
 
-import domain.dev.Status
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.atomic.AtomicLong
+
+import domain.dev.DevStatus
 
 trait RepositoryComponent {
-    val repository: Repository
+  val repository: Repository
 
-    trait Repository {
-        def updateDevStat(user: Status): Status
-    }
+  trait Repository {
+    def updateDevStat(user: DevStatus): DevStatus
+  }
+
 }
 
 trait RepositoryComponentImpl extends RepositoryComponent {
-    override val repository = new RepositoryImpl
+  override val repository = new RepositoryImpl
 
-    class RepositoryImpl extends Repository {
-        
-        val users = new ConcurrentHashMap[Long, Status]
-        val idSequence = new AtomicLong(0)
-        
-        override def updateDevStat(user: Status): Status = {
-            val newId = idSequence.incrementAndGet()
-            val createdUser = user.copy(device = Option(newId))
-            users.put(newId, createdUser)
-            createdUser
-        }
+  class RepositoryImpl extends Repository {
 
+    val devicesStatus = new ConcurrentHashMap[Long, DevStatus]
+    val devicesTarget = new ConcurrentHashMap[Long, DevStatus]
+
+    override def updateDevStat(currentDevStatus: DevStatus): DevStatus = {
+      val devId = currentDevStatus.deviceId
+      val targetDevStatus = devicesTarget.getOrDefault(currentDevStatus.deviceId, DevStatus(devId, Map.empty))
+      devicesStatus.put(currentDevStatus.deviceId, currentDevStatus)
+      val commands = currentDevStatus.asCommands(targetDevStatus.config)
+      DevStatus(devId, commands)
     }
-    
+
+  }
+
 }

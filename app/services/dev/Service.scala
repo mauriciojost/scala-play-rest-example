@@ -1,6 +1,6 @@
 package services.dev
 
-import domain.dev.Status
+import domain.dev.DevStatus
 import repositories.dev.RepositoryComponent
 
 trait ServiceComponent {
@@ -9,7 +9,7 @@ trait ServiceComponent {
 
     trait Service {
 
-        def postStatus(d: Status): Status
+        def postStatus(d: DevStatus): DevStatus
 
     }
 
@@ -23,7 +23,7 @@ trait ServiceComponentImpl extends ServiceComponent {
 
     class ServiceImpl extends Service {
 
-        override def postStatus(d: Status): Status = {
+        override def postStatus(d: DevStatus): DevStatus = {
             repository.updateDevStat(d)
         }
 
