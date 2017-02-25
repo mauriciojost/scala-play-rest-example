@@ -4,11 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
-POST    /dev/:id                      controllers.Application.updateDevStat(id: Long)
-#POST    /users                      controllers.Application.createUser
-#GET     /users/:id                  controllers.Application.findUserById(id: Long)
-#PUT     /users/:id                  controllers.Application.updateUser(id: Long)
-#DELETE  /users/:id                  controllers.Application.deleteUser(id: Long)
+POST    /dev/:id                    controllers.Application.updateDevStat(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
