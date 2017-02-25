@@ -17,21 +17,5 @@ http://localhost:9000
 To use the REST API:
 
 ```
-curl -X POST http://localhost:9000/users -H "Content-Type: application/json" -d "{\"email\": \"test@test.com\"}"
-curl -X GET http://localhost:9000/users/1 
-```
-	
-## Test validation rules
-
-A malformed email
-
-```
-    curl -X POST http://localhost:9000/users -H "Content-Type: application/json" -d "{\"email\": \"test\"}"
-```
-
-An email that already exists for a user
-
-```
-    curl -X POST http://localhost:9000/users -H "Content-Type: application/json" -d "{\"email\": \"test@test.com\"}"
-    curl -X POST http://localhost:9000/users -H "Content-Type: application/json" -d "{\"email\": \"test@test.com\"}"
+curl -X POST -H Content-Type=application/x-www-form-urlencoded http://localhost:9000/dev/0/target -d "c2p0=0"
 ```
