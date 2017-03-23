@@ -24,6 +24,13 @@ case class DevConfigs(
     case (ConfigPropKey(ci, pi), v) => s"c${ci}p${pi}=${v}"
   }.mkString("&")
 
+  override def toString(): String = {
+    val prettyConfigurations = config.map{case (k, v) => s"c${k.configIndex}p${k.propIndex}=${v}"}
+    val concatenated = prettyConfigurations.mkString(",")
+    s"d$deviceId($concatenated)"
+
+  }
+
 }
 
 object DevConfigs {
